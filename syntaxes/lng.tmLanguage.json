@@ -1,0 +1,66 @@
+{
+	"name": "LNG",
+	"patterns": [
+		{
+			"include": "#comment"
+        },
+        {
+			"include": "#control-statement"
+		},
+		{
+			"include": "#keys"
+		},
+		{
+			"include": "#values"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.lng",
+					"begin": "//",
+					"end": "$"
+				}
+			]
+        },
+        "control-statement": {
+            "patterns": [
+				{
+					"name": "keyword.control.include.lng",
+					"begin": "##grflangid",
+					"end": "$"
+				}
+            ]
+        },
+		"keys": {
+			"name": "entity.other.attribute-name.keys.lng",
+			"match": "^[^=]*(?==)"
+		},
+		"values": {
+			"begin": "\\:",
+			"end": "$",
+			"name": "variable.parameter.values.lng",
+			"patterns": [
+				{
+					"begin": "{",
+					"end": "}",
+					"name": "entity.name.function.values.lng"
+				},
+				{
+					"match": "ยง[0-9a-fk-or]{1}",
+					"name": "entity.name.function.values.lng"
+				},
+				{
+					"match": "%([1-9]+\\$)?(\\d)*(\\.(\\d)+)?[dcbsfexh]",
+					"name": "entity.name.tag.values.lng"
+				},
+				{
+					"match": ".",
+					"name": "entity.other.inherited-class.values.lng"
+				}
+			]
+		}
+	},
+	"scopeName": "source.lng"
+}

@@ -1,0 +1,115 @@
+{
+	"name": "nml",
+	"fileTypes": [
+		".nml"
+	],
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#control-statement"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#statements"
+		},
+		{
+			"include": "#units"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.nml",
+					"begin": "//",
+					"end": "$"
+				}
+			]
+		},
+		"control-statement": {
+			"patterns": [
+				{
+					"name": "keyword.control.conditional.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(else|if|case|return|loading|loaded)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.other.blocks.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(grf|param|item|property|graphics|spriteset|spritegroup|template|railtypetable|cargotable|basecost|sort|switch|date|bitmask|string|getbits|sound|import_sound)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "support.variable.grfblock.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(grfid|name|desc|url|version|min_compatible_version)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "support.variable.paramblock.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(type|min_value|max_value|def_value|names)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "support.variable.graphcisblock.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(default|purchase|rotor|random_trigger|cargo_subtype_text|additional_text|colour_mapping|start_stop|every_32_days|sound_effect|articulated_part|can_attach_wagon|refit_cost|create_effect|gui|track_overlay|underlay|tunnels|catenary_wire|catenary_pylons|bridge_surface|level_crossings|depots|fences|tunnel_overlay|signals|anim_next_frame|anim_control|anim_speed|colour|autoslope|tile_check|produce_cargo_arrival|produce_256_ticks|availability|construction_probability|location_check|monthly_prod_change|random_prod_change|build_prod_change|cargo_subtype_display|extra_text_industry|extra_text_fund|control_special|stop_accept_cargo|colour|cargo_input|cargo_output)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "support.variable.propertyblock.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(name|climates_available|introduction_date|model_life|retire_early|vehicle_life|reliability_decay|refittable_cargo_classes|non_refittable_cargo_classes|refittable_cargo_types|cargo_allow_refit|cargo_disallow_refit|loading_speed|cost_factor|running_cost_factor|cargo_age_period|sprite_id|speed|misc_flags|refit_cost|callback_flags|track_type|ai_special_flag|power|running_cost_base|dual_headed|default_cargo_type|cargo_capacity|weight|ai_engine_rank|engine_class|extra_power_per_wagon|tractive_effort_coefficient|air_drag_coefficient|length|visual_effect_and_powered|effect_spawn_model_and_powered|extra_weight_per_wagon|bitmask_vehicle_info|sound_effect|visual_effect|is_refittable|ocean_speed_fraction|canal_speed_fraction|aircraft_type|acceleration|passenger_capacity|mail_capacity|RAILTYPE_FROM_HERE|label|toolbar_caption|menu_text|build_window_caption|autoreplace_text|new_engine_text|compatible_railtype_list|powered_railtype_list|railtype_flags|curve_speed_multiplier|station_graphics|construction_cost|speed_limit|acceleration_model|map_colour|requires_railtype_list|introduces_railtype_list|sort_order|maintenance_cost|alternative_railtype_list|CARGO_FROM_HERE|number|type_name|unit_name|units_of_cargo|items_of_cargo|type_abbreviation|sprite|weight|penalty_lowerbound|single_penalty_length|price_factor|station_list_colour|cargo_payment_list_colour|is_freight|cargo_classes|cargo_label|town_growth_effect|town_growth_multiplier|callback_flags|capacity_multiplier|OBJECT_FROM_HERE|class|classname|name|size|build_cost_multiplier|remove_cost_multiplier|end_of_life_date|object_flags|animation_info|animation_speed|animation_triggers|callback_flags|height|num_views|count_per_map256|INDUSTRY_FROM_HERE|substitute|override|layouts|life_type|closure_msg|prod_increase_msg|prod_decrease_msg|fund_cost_multiplier|prod_cargo_types|accept_cargo_types|prod_multiplier|min_cargo_distr|random_sound_effects|conflicting_ind_types|prob_random|prob_map_gen|prob_in_game|map_colour|spec_flags|new_ind_msg|input_multiplier_1|input_mutliplier_2|input_multiplier_3|prospect_change|callback_flags|remove_cost_multiplier|nearby_station_name)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "support.variable.switchblock.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(extra_callback_info1|extra_callback_info2|position_in_consist|position_in_consist_from_end|num_vehs_in_consist|postion_in_vehid_chain|position_in_vehic_chain_from_end|position_in_articulated_veh|position_in_articulated_veh_from_end|cargo_classes_in_consist|most_common_cargo_type|most_common_cargo_subtype|bitmask_consist_info|company_num|company_type|company_colour1|company_colour2|aircraft_height|airport_type|curv_info_prev_cur|curv_info_cur_next|curv_info_prev_next|curv_info|motion_counter|cargo_type_in_veh|cargo_unit_weight|cargo_classes|vehicle_is_available|vehicle_is_testing|vehicle_is_offered|build_year|direction|cargo_capacity|cargo_count|cargo_subtype|vehicle_is_powered|vehicle_is_not_powered|vehicle_is_potentially_powered|vehicle_is_flipped|vehicle_is_reversed|built_during_preview|current_railtype|waiting_triggers|random_bits|grfid|vehicle_type_id|vehicle_is_hidden|vehicle_is_stopped|vehicle_is_crashed|vehicle_is_broken|date_of_last_service|breakdowns_since_last_service|reliability|age_in_days|max_age_in_days|current_speed|max_speed|current_max_speed|vehicle_is_in_depot|vehicle_is_unloading|count_veh_id|other_veh_curv_info|other_veh_is_hidden|other_veh_x_offset|other_veh_y_offset|other_veh_z_offset|terrain_type|enhanced_tunnels|level_crossing_state|build_date|town_zone|relative_x|relative_y|relative_pos|terrain_type|tile_slope|animation_frame|company_colour|owner|town_manhattan_dist|town_euclidean_dist|town_zone|view|nearby_tile_object_type|nearby_tile_object_view|nearby_tile_random_bits|nearby_tile_slope|nearby_tile_is_same_object|nearby_tile_is_water|nearby_terrain_type|nearby_tile_water_class|nearby_tile_height|nearby_tile_class|nearby_tile_animation_frame|object_count|object_distance|production_level|waiting_cargo_1|waiting_cargo_2|waiting_cargo_3|produced_cargo_waiting_1|produced_cargo_waiting_2|produced_this_month_1|produced_this_month_2|produced_last_month_1|produced_last_month_2|transported_this_month_1|transported_this_month_2|transported_last_month_1|transported_last_month_2|transported_last_month_pct_1|transported_last_month_pct_2|production_rate_1|production_rate_2|water_distance|layout_num|founder|founder_type|founder_colour1|founder_colour2|colour|build_date|build_type|counter|last_accept_date|random_bits|industry_count|industry_distance|industry_layout_count|industry_layout_distance|industry_town_count)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"statements": {
+			"patterns": [
+				{
+					"name": "entity.name.function.values.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(SELF|PARENT|FEAT_TRAINS|FEAT_ROADVEHS|FEAT_SHIPS|FEAT_AIRCRAFT|FEAT_STATIONS|FEAT_CANALS|FEAT_BRIDGES|FEAT_HOUSES|FEAT_GLOBALVARS|FEAT_INDUSTRYTILES|FEAT_INDUSTRIES|FEAT_CARGOS|FEAT_SOUNDEFFECTS|FEAT_AIRPORTS|FEAT_SIGNALS|FEAT_OBJECTS|FEAT_RAILTYPES|FEAT_AIRPORTTILES)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(ENGINE_CLASS_ELECTRIC|ENGINE_CLASS_STEAM|ENGINE_CLASS_DIESEL|RUNNING_COST_ELECTRIC|RUNNING_COST_STEAM|RUNNING_COST_DIESEL|RUNNING_COST_ROADVEH|RUNNING_COST_NONE|VISUAL_EFFECT_ELECTRIC|VISUAL_EFFECT_STEAM|VISUAL_EFFECT_DIESEL|VISUAL_EFFECT_DEFAULT|VISUAL_EFFECT_DISABLE|DISABLE_WAGON_POWER|VEHICLE_NEVER_EXPIRES|TRACK_POWER_ON|ALL_CLIMATES|NO_CLIMATE|SPRITE_ID_NEW_TRAIN|SPRITE_ID_NEW_ROADVEH|SPRITE_ID_NEW_SHIP|SPRITE_ID_NEW_AIRCRAFT|RAILTYPE_STATION_NORMAL|RAILTYPE_STATION_MONORAIL|RAILTYPE_STATION_MAGLEV|ACC_MODEL_RAIL|ACC_MODEL_MONORAIL|ACC_MODEL_MAGLEV|TILETYPE_NORMAL|TILETYPE_DESERT|TILETYPE_RAIN_FOREST|TILETYPE_SNOW|LEVEL_CROSSING_CLOSED|LEVEL_CROSSING_OPEN|TOWNGROWTH_PASSENGERS|TOWNGROWTH_MAIL|TOWNGROWTH_GOODS|TOWNGROWTH_WATER|TOWNGROWTH_FOOD|TOWNGROWTH_NONE|PLAYERTYPE_HUMAN|PLAYERTYPE_AI|PLAYERTYPE_HUMAN_IN_AI|PLAYERTYPE_AI_IN_HUMAN|BUILDTYPE_UNKNOWN|BUILDTYPE_GAMEPLAY|BUILDTYPE_GENERATION|BUILDTYPE_EDITOR)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.cb.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(CB_RESULT_NO_MORE_ARTICULATED_PARTS|CB_RESULT_NO_TEXT|CB_RESULT_COLOUR_MAPPING_ADD_CC|CB_RESULT_NO_SOUND|CB_RESULT_REVERSED_VEHICLE|CB_RESULT_AUTOREFIT|CB_RESULT_CREATE_EFFECT_CENTER|CB_RESULT_LOCATION_ALLOW|CB_RESULT_LOCATION_DISALLOW|CB_RESULT_LOCATION_DISALLOW_ONLY_RAINFOREST|CB_RESULT_LOCATION_DISALLOW_ONLY_DESERT|CB_RESULT_LOCATION_DISALLOW_ONLY_ABOVE_SNOWLINE|CB_RESULT_LOCATION_DISALLOW_ONLY_BELOW_SNOWLINE|CB_RESULT_LOCATION_DISALLOW_NOT_ON_OPEN_SEA|CB_RESULT_LOCATION_DISALLOW_NOT_ON_CANAL|CB_RESULT_LOCATION_DISALLOW_NOT_ON_RIVER|CB_RESULT_IND_ALLOW|CB_RESULT_IND_DISALLOW|CB_RESULT_IND_NO_CONSTRUCTION|CB_RESULT_IND_PROBABILITY_FROM_PROPERTY|CB_RESULT_IND_PROD_NO_CHANGE|CB_RESULT_IND_PROD_HALF|CB_RESULT_IND_PROD_DOUBLE|CB_RESULT_IND_PROD_CLOSE|CB_RESULT_IND_PROD_RANDOM|CB_RESULT_IND_PROD_DIVIDE_BY_4|CB_RESULT_IND_PROD_DIVIDE_BY_8|CB_RESULT_IND_PROD_DIVIDE_BY_16|CB_RESULT_IND_PROD_MULTIPLY_BY_4|CB_RESULT_IND_PROD_MULTIPLY_BY_8|CB_RESULT_IND_PROD_MULTIPLY_BY_16|CB_RESULT_IND_PROD_MULTIPLY_BY_32|CB_RESULT_IND_PROD_DECREMENT_BY_1|CB_RESULT_IND_PROD_INCREMENT_BY_1|CB_RESULT_IND_PROD_SET_BY_0x100)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.cc.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(CC_PASSENGERS|CC_MAIL|CC_EXPRESS|CC_ARMOURED|CC_BULK|CC_PIECE_GOODS|CC_LIQUID|CC_REFRIGERATED|CC_HARADOUS|CC_COVERED|CC_OVERSIZED|CC_POWDERIZED|CC_NON_POURABLE|CC_NEO_BULK|CC_SPECIAL|NO_CARGO_CLASS|ALL_NORMAL_CARGO_CLASSES|ALL_CARGO_CLASSES)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.obj.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(OBJ_FLAG_ONLY_SE|OBJ_FLAG_IRREMOVABLE|OBJ_FLAG_ANYTHING_REMOVE|OBJ_FLAG_ON_WATER|OBJ_FLAG_REMOVE_IS_INCOME|OBJ_FLAG_NO_FOUNDATIONS|OBJ_FLAG_ANIMATED|OBJ_ONLY_INGAME|OBJ_FLAG_2CC|OBJ_FLAG_NOT_ON_LAND|OBJ_FLAG_DRAW_WATER|OBJ_FLAG_ALLOW_BRIDGE|OBJ_FLAG_RANDOM_ANIMATION)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.bitmask.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(AI_FLAG_PASSENGERS|AI_FLAG_CARGO|TRAIN_FLAG_MU|TRAIN_FLAG_2CC|RAILTYPE_FLAG_CATENARY|RAILTYPE_FLAG_NO_LEVEL_CROSSING|ROADVEH_FLAG_TRAM|ROADVEH_FLAG_2CC|ROADVEH_FLAG_AUTOREFIT|ROADVEH_FLAG_NO_BREAKDOWN_SMOKE|ROADVEH_FLAG_SPRITE_STACK)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.animtrigger.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(ANIM_TRIGGER_OBJ_BUILT|ANIM_TRIGGER_OBJ_TILELOOP|ANIM_TRIGGER_OBJ_256_TICKS)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "entity.name.function.values.industry.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(IND_FLAG_PLANT_FIELDS_PERIODICALLY|IND_FLAG_CUT_TREES|IND_FLAG_BUILT_ON_WATER|IND_FLAG_ONLY_IN_LARGE_TOWNS|IND_FLAG_ONLY_IN_TOWNS|IND_FLAG_BUILT_NEAR_TOWN|IND_FLAG_PLANT_FIELDS_WHEN_BUILT|IND_FLAG_NO_PRODUCTION_INCREASE|IND_FLAG_BUILT_BEFORE_1950|IND_FLAG_BUILT_AFTER_1950|IND_FLAG_AI_CREATES_AIR_AND_SHIP_ROUTES|IND_FLAG_MILITARY_AIRPLANE_CAN_EXPLODE|IND_FLAG_MILITARY_HELICOPTER_CAN_EXPLODE|IND_FLAG_CAN_CAUSE_SUBSIDENCE|IND_FLAG_AUTOMATIC_PRODUCTION_MULTIPLIER|IND_FLAG_RANDOM_BITS_IN_PRODUCTION_CALLBACK|IND_FLAG_DO_NOT_FORCE_INSTANCE_AT_MAP_GENERATION|IND_FLAG_ALLOW_CLOSING_LAST_INSTANCE|IND_CREATION_GENERATION|IND_CREATION_RANDOM|IND_CREATION_FUND|IND_CREATION_PROSPECT)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"units": {
+			"patterns": [
+				{
+					"name": "constant.numeric.nml",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(km/h|mph|m/s|kW|hp|hpl|hpM|ton|tons|kg)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		}
+	},
+	"scopeName": "source.nml"
+}
