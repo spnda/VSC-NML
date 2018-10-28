@@ -28,11 +28,11 @@
             "patterns": [
 				{
 					"name": "keyword.control.include.lng",
-					"begin": "##grflangid",
+					"begin": "(##grflangid|##gender|##case|##map_case|##map_gender)",
 					"end": "$"
 				}
             ]
-        },
+		},
 		"keys": {
 			"name": "entity.other.attribute-name.keys.lng",
 			"match": "^[^=]*(?==)"
@@ -58,6 +58,10 @@
 				{
 					"match": ".",
 					"name": "entity.other.inherited-class.values.lng"
+				},
+				{
+					"name": "support.class.error.lng",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(COMMA|SIGNED_WORD|UNSIGNED_WORD|CURRENCY|VELOCITY|VOLUME|VOLUME_SHORT|POWER|WEIGHT|WEIGHT_SHORT|CARGO_LONG|CARGO_SHORT|CARGO_TINY|CARGO_NAME|HEX|STRING|DATE_1920_LONG|DATE_1920_SHORT|DATE_LONG|DATE_SHORT|POP_WORD|STATION)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
 				}
 			]
 		}
