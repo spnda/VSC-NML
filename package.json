@@ -1,8 +1,9 @@
 {
     "name": "nml-language",
     "displayName": "NML Language Support",
-    "description": "Adds the NML Language to VS Code (including .pnml and .lng)",
-    "version": "1.0.0",
+    "description": "Adds the NML Language",
+    "author": "PNDA",
+    "version": "1.0.1",
     "publisher": "PNDA",
     "license": "GPLv2",
     "repository": {
@@ -10,7 +11,7 @@
 		"url": "https://github.com/ThePNDA/VS-Code-NML-Support"
 	},
     "engines": {
-        "vscode": "*"
+        "vscode": "^1.16.0"
     },
     "categories": [
         "Programming Languages"
@@ -18,26 +19,35 @@
     "keywords": [
         "nml",
         "pnml",
-        "lng"
+        "lng",
+        "grf"
     ],
     "contributes": {
         "languages": [
             {
                 "id": "nml",
-                "aliases": ["NML", "nml"],
-                "extensions": [".nml"],
+                "aliases": [
+                    "NML",
+                    "nml",
+                    "NewGRF Meta Language",
+                    "pnml"
+                ],
+                "extensions": [
+                    ".nml",
+                    ".pnml"
+                ],
                 "configuration": "./language-configuration.json"
             },
             {
-                "id": "pnml",
-                "aliases": ["PNML", "pnml"],
-                "extensions": [".pnml"],
-                "configuration": "./language-configuration.json" 
-            },
-            {
                 "id": "lng",
-                "aliases": ["LNG", "lng"],
-                "extensions": [".lng"],
+                "aliases": [
+                    "LNG",
+                    "lng",
+                    "NewGRF Language File"
+                ],
+                "extensions": [
+                    ".lng"
+                ],
                 "configuration": "./language-configuration.json" 
             }
         ],
@@ -45,12 +55,7 @@
             {
                 "language": "nml",
                 "scopeName": "source.nml",
-                "path": "./syntaxes/nml.tmLanguage.json"
-            },
-            {
-                "language": "pnml",
-                "scopeName": "source.pnml",
-                "path": "./syntaxes/pnml.tmLanguage.json"
+                "path": "./syntaxes/nml_vs.tmLanguage.json"
             },
             {
                 "language": "lng",
@@ -62,11 +67,12 @@
             {
                 "language": "nml",
                 "path": "./snippets/nml.json"
-            },
-            {
-                "language": "pnml",
-                "path": "./snippets/nml.json"
             }
         ]
-    }
+    },
+    "files": [
+        "./lib/extension.js",
+        "CHANGELOG.md",
+        "LICENSE"
+    ]
 }
