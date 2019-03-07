@@ -9,7 +9,10 @@
     "repository": {
 		"type": "git",
 		"url": "https://github.com/ThePNDA/VS-Code-NML-Support"
-	},
+    },
+    "bugs": {
+        "url": "https://github.com/ThePNDA/VS-Code-NML-Support/issues"
+    },
     "engines": {
         "vscode": "^1.16.0"
     },
@@ -74,5 +77,20 @@
         "./lib/extension.js",
         "CHANGELOG.md",
         "LICENSE"
-    ]
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "devDependencies": {
+        "@types/node": "^10.12.18",
+        "tslint": "^5.13.1",
+        "typescript": "^3.3.3333",
+        "vscode": "^1.1.30"
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    }
 }
