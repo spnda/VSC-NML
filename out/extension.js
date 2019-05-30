@@ -3,17 +3,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
 function activate(context) {
     var documentation = {
+        //Add code examples in the descriptions, like "switch(FEAT_TRAINS, SELF, switch_1, position_in_articulated_veh) {\n    0: set_1; //1st position\n    1: set_2; //2nd position\n    set_3; //default}"
         "date": {
             "title": "date",
-            "description": "Creates a date. \n ```newgrfml date(yyyy, mm, dd)```"
+            "description": "Creates a date."
         },
         "item": {
             "title": "item(feature, identifier)",
             "description": "Creates a new item."
         },
+        "property": {
+            "title": "property{...items}",
+            "description": "Property definitions block for an item"
+        },
+        "graphics": {
+            "title": "graphics{...items}",
+            "description": "Graphics definitions block for an item"
+        },
         "switch": {
-            "title": "switch(feature, type, identifier, variable)",
-            "description": "Switch statement based on the variable \n switch(FEAT_TRAINS, SELF, switch_1, position_in_articulated_veh) {\n    0: set_1; //1st position\n    1: set_2; //2nd position\n    set_3; //default}"
+            "title": "switch(feature, kind, identifier, variable)",
+            "description": "Switch statement based on the variable"
         },
         "spriteset": {
             "title": "spriteset(identifier, filePath)",
@@ -30,12 +39,28 @@ function activate(context) {
         "railtypetable": {
             "title": "railtypetable",
             "description": "Creates a table of all known railtypes by railtype identifier"
+        },
+        "bitmask": {
+            "title": "bitmask",
+        },
+        "spritegroup": {
+            "title": "spritegroup",
+            "description": "Groups existing sprites"
+        },
+        "FEAT_TRAINS": {
+            "title": "FEAT_TRAINS",
+            "description": "Feature for trains"
+        },
+        "FEAT_ROADVEH": {
+            "title": "FEAT_ROADVEH",
+            "description": "Feature for road vehicles"
         }
     };
     let hoverProvider = vscode.languages.registerHoverProvider('newgrfml', {
         provideHover(document, position, token) {
-            var hovering = document.lineAt(position).text.substring(0, position.character);
-            return new vscode.Hover([{ language: 'newgrfml', value: documentation[hovering].title }, documentation[hovering].description || undefined]);
+            var range = document.getWordRangeAtPosition(position);
+            var text = document.getText(range);
+            return new vscode.Hover([{ language: 'newgrfml', value: documentation[text].title }, documentation[text].description || undefined]);
         }
     });
     context.subscriptions.push(hoverProvider);
