@@ -1,14 +1,14 @@
 {
     "name": "nml-language",
-    "displayName": "NML Language Support",
-    "description": "Adds the NML Language",
+    "displayName": "NewGRF Meta Language",
+    "description": "Adds the NewGRF Meta Language",
     "author": "PNDA",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "publisher": "PNDA",
     "license": "GPLv2",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/ThePNDA/VS-Code-NML-Support"
+        "type": "git",
+        "url": "https://github.com/ThePNDA/VS-Code-NML-Support"
     },
     "bugs": {
         "url": "https://github.com/ThePNDA/VS-Code-NML-Support/issues"
@@ -28,9 +28,9 @@
     "contributes": {
         "languages": [
             {
-                "id": "nml",
+                "id": "newgrfml",
                 "aliases": [
-                    "NML",
+                    "nml",
                     "nml",
                     "NewGRF Meta Language",
                     "pnml"
@@ -51,13 +51,13 @@
                 "extensions": [
                     ".lng"
                 ],
-                "configuration": "./language-configuration.json" 
+                "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "nml",
-                "scopeName": "source.nml",
+                "language": "newgrfml",
+                "scopeName": "source.newgrfml",
                 "path": "./syntaxes/nml_vs.tmLanguage.json"
             },
             {
@@ -68,8 +68,8 @@
         ],
         "snippets": [
             {
-                "language": "nml",
-                "path": "./snippets/nml.json"
+                "language": "newgrfml",
+                "path": "./snippets/newgrfml.json"
             }
         ]
     },
@@ -92,5 +92,6 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install"
-    }
+    },
+    "main": "./out/extension.js"
 }
