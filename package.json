@@ -83,10 +83,10 @@
         "*"
     ],
     "devDependencies": {
-        "@types/node": "^10.12.18",
-        "tslint": "^5.13.1",
-        "typescript": "^3.3.3333",
-        "vscode": "^1.1.30"
+        "@types/node": "^10.17.28",
+        "tslint": "^5.20.1",
+        "typescript": "^3.9.7",
+        "vscode": "^1.1.37"
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
