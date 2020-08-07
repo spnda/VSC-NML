@@ -3,12 +3,12 @@
         "prefix": "grf",
         "body": [
             "grf {",
-            "   grfid:                  ;",
-            "   name:                   string();",
-            "   desc:                   string();",
-            "   url:                    string();",
-            "   version:                1;",
-            "   min_compatible_version: 0;",
+            "   grfid:                  ${1:\"grfid\"};",
+            "   name:                   string(${2:STR_});",
+            "   desc:                   string(${3:STR_});",
+            "   url:                    string(${4:STR_});",
+            "   version:                ${5};",
+            "   min_compatible_version: ${0};",
             "}"
         ],
         "description": "Creates a GRF Header Block"
@@ -16,7 +16,7 @@
     "ItemBlock": {
         "prefix": "item",
         "body": [
-            "item () {",
+            "item (${1:FEAT_}, ${0:item_}) {",
             "   property {",
             "   }",
             "   graphics {",
