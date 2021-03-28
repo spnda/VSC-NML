@@ -24,7 +24,8 @@
         "newgrf",
         "pnml",
         "lng",
-        "grf"
+        "grf",
+		"openttd"
     ],
     "contributes": {
         "languages": [
@@ -40,7 +41,7 @@
                     ".nml",
                     ".pnml"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./syntaxes/newgrfml-language-configuration.json"
             },
             {
                 "id": "lng",
@@ -52,7 +53,7 @@
                 "extensions": [
                     ".lng"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./syntaxes/lng-language-configuration.json"
             }
         ],
         "grammars": [

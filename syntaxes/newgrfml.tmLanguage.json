@@ -28,7 +28,12 @@
                     "name": "comment.line.number-sign.newgrfml",
                     "begin": "//",
                     "end": "$"
-                }
+                },
+				{
+					"name": "comment.block.dart",
+					"begin": "/\\*",
+					"end": "\\*/"
+				}
             ]
         },
         "block": {
