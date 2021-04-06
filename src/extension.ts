@@ -66,9 +66,6 @@ export function activate(context: vscode.ExtensionContext) {
 			"description": "Each railtype can be either a 4-byte long Identifier or string or it can have this format: `ID : [ ID[, ID]* ]`. The first ID is the name (doesn't have to be 4-bytes long), the other IDs are a list of labels that are assigned to the given name if they are available. In the following example, the label 3RDR is written as a string because an identifier can't start with a numeric value. To reference it later you can write railtype(\"3RDR\"). If another grf defines a railtype with label SHNY then RT_SHINY_RAIL will refer to that track type. If the railtype SHNY is not available then trains using RT_SHINY_RAIL as track type will fallback to RAIL. Note that labels are not shared between features, so the same label can be used for multiple items. For example, the label \"RAIL\" can be used for a railtype, roadtype, tramtype, and cargotype simultaneously without conflict. \n - The default railtype labels are \"RAIL\", \"ELRL\", \"MONO\", \"MGLV\". See the [List of railtype labels](https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels) in the NewGRF Specs for currently defined custom labels. \n - By default there is only one roadtype \"ROAD\" defined. \n - By default there is only one tramtype \"ELRL\" defined. By convention tramtypes shall reuse railtype labels for similar types. \n",
 			"example": "railtypetable {\n	RAIL,\n	ELRL,\n	\"3RDR\",\n	RT_SHINY_RAIL: [SHNY, RAIL]\n}\n"
 		},
-		"bitmask": {
-			"title": "bitmask()",
-		},
 		"spritegroup": {
 			"title": "spritegroup",
 			"description": "Groups existing sprites"
