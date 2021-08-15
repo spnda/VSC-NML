@@ -14,7 +14,7 @@
         "url": "https://github.com/spnda/VSC-NML/issues"
     },
     "engines": {
-        "vscode": "^1.55.0"
+        "vscode": "^1.57.0"
     },
     "categories": [
         "Programming Languages"
