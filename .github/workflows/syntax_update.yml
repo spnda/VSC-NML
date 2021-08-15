@@ -1,0 +1,46 @@
+# This workflow runs every few months to automatically update the syntax 
+name: "Syntax Update"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '* * */3 * *' # Every 3 months
+
+jobs:
+  update-schedule:
+    runs-on: ubuntu-20.04
+    steps:
+      # Ensure git is installed.
+      - run: sudo apt-get update && sudo apt-get install git -y && git --version
+      # Install python
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      # Install required python packages
+      - run: python -m pip install ply && python -m pip install pillow
+      # Clone the NML repository 
+      - uses: actions/checkout@v2
+        with:
+          repository: OpenTTD/nml
+          fetch-depth: 0
+          path: 'nml'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: cd $GITHUB_WORKSPACE/nml && python gen_editor visualstudiocode
+
+      # Now clone this repository.
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          fetch-depth: 0
+          path: 'vscnml'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # Copy the generated JSON file.
+      - run: cp $GITHUB_WORKSPACE/nml/newgrfml.tmLanguage.json $GITHUB_WORKSPACE/vscnml/syntaxes/
+      - uses: EndBug/add-and-commit@v7
+        with:
+          add: 'syntaxes/*'
+          cwd: './vscnml' # $GITHUB_WORKSPACE kinda doesn't work here
+          branch: master
+          message: Update NML syntax
+          default_author: github_actions
+          github_token: ${{ secrets.GITHUB_TOKEN }}
