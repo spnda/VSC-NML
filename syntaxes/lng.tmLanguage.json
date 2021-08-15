@@ -2,7 +2,7 @@
 	"name": "LNG",
 	"patterns": [
 		{
-			"include": "#comment"
+			"include": "#comments"
         },
         {
 			"include": "#control-statement"
@@ -19,7 +19,7 @@
 			"patterns": [
 				{
 					"name": "comment.line.number-sign.lng",
-					"begin": "//",
+                    "begin": "#(?= )",
 					"end": "$"
 				}
 			]
@@ -39,25 +39,21 @@
 		},
 		"values": {
 			"begin": "\\:",
-			"end": "$",
-			"name": "variable.parameter.values.lng",
+			"end": "\n",
+			"name": "string.quoted.double.lng",
 			"patterns": [
 				{
 					"begin": "{",
 					"end": "}",
-					"name": "entity.name.function.values.lng"
+					"name": "keyword.other.lng"
 				},
 				{
 					"match": "ยง[0-9a-fk-or]{1}",
-					"name": "entity.name.function.values.lng"
+					"name": "variable.other.constant.lng"
 				},
 				{
 					"match": "%([1-9]+\\$)?(\\d)*(\\.(\\d)+)?[dcbsfexh]",
 					"name": "entity.name.tag.values.lng"
-				},
-				{
-					"match": ".",
-					"name": "entity.other.inherited-class.values.lng"
 				},
 				{
 					"name": "support.class.error.lng",
