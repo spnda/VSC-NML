@@ -5,3 +5,12 @@
 - Syntax Highligting for .nml and .pnml files.
 - Syntax Highlighting for .lng files
 - Snippets for .nml and .pnml files
+
+### 1.2.0
+- Updated to NML 0.5.3
+
+### 1.2.1
+- All new syntax highlighting backend (Allows for better compatibility with themes)
+
+### 1.2.2
+- Updated to NML 0.6.0
