@@ -14,3 +14,5 @@
 
 ### 1.2.2
 - Updated to NML 0.6.0
+- Added support for comments in language files
+- Better colours and highlighting in language files
