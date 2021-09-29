@@ -4,7 +4,7 @@ name: "Syntax Update"
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* * */3 * *' # Every 3 months
+    - cron: '0 0 1 */6 *' # First day of every 6th month
 
 jobs:
   update-schedule:
