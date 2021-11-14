@@ -18,24 +18,28 @@ jobs:
           python-version: '3.9'
       # Install required python packages
       - run: python -m pip install ply && python -m pip install pillow
-      # Clone the NML repository 
+      # Clone the NML repository and our repository
       - uses: actions/checkout@v2
         with:
           repository: OpenTTD/nml
           fetch-depth: 0
           path: 'nml'
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: cd $GITHUB_WORKSPACE/nml && python gen_editor visualstudiocode
-
-      # Now clone this repository.
       - uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
           fetch-depth: 0
           path: 'vscnml'
           token: ${{ secrets.GITHUB_TOKEN }}
-      # Copy the generated JSON file.
+
+      # Let NML generate the JSONs.
+      - run: cd $GITHUB_WORKSPACE/nml && python gen_editor visualstudiocode
+
+      # Copy the generated JSON files.
       - run: cp $GITHUB_WORKSPACE/nml/newgrfml.tmLanguage.json $GITHUB_WORKSPACE/vscnml/syntaxes/
+      - run: cp $GITHUB_WORKSPACE/nml/providers.json $GITHUB_WORKSPACE/vscnml/resources/
+
+      # Finally, commit the changes.
       - uses: EndBug/add-and-commit@v7
         with:
           add: 'syntaxes/*'

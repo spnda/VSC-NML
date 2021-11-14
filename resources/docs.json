@@ -1,0 +1,69 @@
+{
+	"date": {
+		"title": "date",
+		"description": "Creates a date."
+	},
+	"item": {
+		"title": "item (<expression> [, <ID> [, <expression> [, <expression>]]])",
+		"description": "The first argument is the feature of the item, the second (optional) argument is the name used to identify the object throughout the NML file and the third (optional) argument is the numerical id you want to use for this item. The meaning and relevance of this id differs per-feature, refer to the feature-specific pages for more information. The default value is -1, which lets NML pick an id for you. The fourth (optional) argument is the size, which is relevant for houses only and explained there.\nMind, while arguments 2 to 4 are called \"optional\", you can only leave them out starting from the end, but not skip only some in the middle. That is, if you want so set argument 4, you must also set arguments 2 and 3.\nNote, while the third argument (the numerical id) is optional, it should only be left out in simple short-lived NewGRF. The numerical id is relevant for OpenTTD savegame compatibilty. If you delete items or insert items in front, the automatically assigned ids of following items will change, and thus your NewGRF will be incompatible to earlier versions of itself. So, if your NewGRF is not a one-shot, but will evolve over multiple versions, you should assign ids manually, and keep them unchanged. [More info](https://newgrf-specs.tt-wiki.net/wiki/NML:Item).",
+		"example": "item (FEAT_ROADVEHS, hereford_tram) {\n\tproperty {\n\t\tname: string(STR_NAME_HEREFORD_TRAM);\n\t\tclimates_available: ALL_CLIMATES;\n\t\tintroduction_date: date(1940,1,1);\n\t\tspeed:\t\t\t  60 km/h;\n\t}\n}"
+	},
+	"property": {
+		"title": "property{...items}",
+		"description": "Property definitions block for an item."
+	},
+	"graphics": {
+		"title": "graphics{...items}",
+		"description": "Graphics definitions block for an item."
+	},
+	"switch": {
+		"title": "switch (<feature>, (SELF|PARENT), <ID>, <expression>)",
+		"description": "Switch statement based on a variable. [More info](https://newgrf-specs.tt-wiki.net/wiki/NML:Switch). The four expressions have the following meaning: \n - `<feature>`: The feature for which this switch is used (see [Features](https://newgrf-specs.tt-wiki.net/wiki/NML:Features)). \n - `SELF|PARENT`: Which variables to use. SELF uses the variables of the item itself, while PARENT uses the variables of a related object. This related object differs per feature, refer to the table below. \n - `<ID>`: Name of this switch block. This (unique) name can be used to refer to the block from other switch- or graphics-blocks. \n - `<expression>`: The expression that will be evaluated to make a decision. This expression may contain variables. Instead of a single expression this may also be an array of expressions. In that case all of the array elements are evaluated in order and the last one is used to make a decision. \n",
+		"example": "switch (FEAT_TRAINS, PARENT, some_vehicle_switch, (position_in_consist + param[1]) % 4) {\n\t0..2: return string(STRING_FOO_BAR); //return a text message\n\t3: return; //return the computed value\n\t5..300: return 42; //42 is always a good answer\n\t400: other_switch; //chain to some other switch block\n\t401: return num_vehs_in_consist + 1; //return a value with a variable access\n\tCB_FAILED; //return a failure result as default\n}\n"
+	},
+	"spriteset": {
+		"title": "spriteset(identifier, filePath)",
+		"description": "A spriteset associates a name with a number piece of an existing image file and describes the offsets with respect to some origin the graphics will be painted within the game. Different features and situations require that a single set has a certain amount of actual sprites associated. E.g. a vehicle usually requires eight sprites in order to provide on view for each of the eight possible ingame orientations of a vehicle. "
+	},
+	"template": {
+		"title": "template",
+		"description": "Several features will need to reference actual graphics from files you created. There is a lot of information you'll need to provide, some of which is optional. Most important are the filename, the location of the sprite in that file and the offset used to position the sprite. Since blocks that reference realsprites will you to specify a default filename, you don't often need to give a filename for every separate sprite. [More info](https://newgrf-specs.tt-wiki.net/wiki/NML:Realsprites)."
+	},
+	"cargotable": {
+		"title": "cargotable",
+		"description": "The cargotable is a list of 4-byte long IDs or literal strings. Please see the [list of cargo labels](https://newgrf-specs.tt-wiki.net/wiki/CargoTypes#Cargo_Labels) in the NewGRF Specs for the currently defined cargo labels and their [cargo classes](https://newgrf-specs.tt-wiki.net/wiki/NML:Cargos#Cargo_classes). For example: ",
+		"example": "cargotable {\n\tPASS, MAIL, GOOD, COAL\n}\n"
+	},
+	"disable_item": {
+		"title": "disable_item(feature[, first_id[, last_id]])",
+		"description": "With a disable_item statement, it's possible to disable one or more existing items. This works for vehicles, houses, industries, cargos and airports. \n`feature` specifies the feature of the item(s) to disable. If no further arguments are given, all default items of that feature are disabled. If one more argument (`first_id`) is given, only that ID is disabled. With two more arguments, all items from `first_id` up to and including `last_id` are disabled. For lists of default IDs, consult the documentation about that feature.",
+		"example": "// disable all monorail and maglev vehicles\ndisable_item(FEAT_TRAINS, 54, 115);"
+	},
+	"grf": {
+		"title": "grf",
+		"description": "Concerning the choice of the `grfid`, see [these](https://newgrf-specs.tt-wiki.net/wiki/Action8#GRFID) guidelines",
+		"example": "grf {\n\tgrfid: \"AB\\03\\02\";\n\tname: string(STR_GRF_NAME);\n\tdesc: string(STR_GRF_DESC);\n\turl: string(STR_GRF_URL);\n\tversion: 1;\n\tmin_compatible_version: 0;\n\tparam {\n\t\tparam_provide {\n\t\t\ttype:\tint;\n\t\t\tname:\tstring(STR_PARAM_PROVIDE);\n\t\t\tdesc:\tstring(STR_PARAM_PROVIDE_DESC);\n\t\t\tmin_value: 0;\n\t\t\tmax_value: 1;\n\t\t\tdef_value: 0;\n\t\t\tnames: {\n\t\t\t\t0: string(STR_PARAM_PROVIDE_ENGINES_AND_WAGONS);\n\t\t\t\t1: string(STR_PARAM_PROVIDE_WAGONS_ONLY);\n\t\t\t};\n\t\t}\n\t}\n}"
+	},
+	"param": {
+		"title": "param <num>",
+		"description": "As part of the grf block you can specify some parameter settings that the user will be able to change as part of the newgrf configuration. These can for example be used to disable parts of your NewGRF or to change between multiple graphics in case that's not possible at runtime. [More info](https://newgrf-specs.tt-wiki.net/wiki/NML:GRF)",
+		"example": "param <num> {\n\t<name> {\n\t\ttype:\t<type>;\n\t\tname:\t<string>;\n\t\tdesc:\t<string>;\n\t\tmin_value: <expression>;\n\t\tmax_value: <expression>;\n\t\tdef_value: <expression>;\n\t\tbit: <expression>;\n\t\tnames: {\n\t\t\t0: <string>;\n\t\t\t1: <string>;\n\t\t};\n\t}\n}"
+	},
+	"railtypetable": {
+		"title": "railtypetable",
+		"description": "Each railtype can be either a 4-byte long Identifier or string or it can have this format: `ID : [ ID[, ID]* ]`. The first ID is the name (doesn't have to be 4-bytes long), the other IDs are a list of labels that are assigned to the given name if they are available. In the following example, the label 3RDR is written as a string because an identifier can't start with a numeric value. To reference it later you can write railtype(\"3RDR\"). If another grf defines a railtype with label SHNY then RT_SHINY_RAIL will refer to that track type. If the railtype SHNY is not available then trains using RT_SHINY_RAIL as track type will fallback to RAIL. Note that labels are not shared between features, so the same label can be used for multiple items. For example, the label \"RAIL\" can be used for a railtype, roadtype, tramtype, and cargotype simultaneously without conflict. \n - The default railtype labels are \"RAIL\", \"ELRL\", \"MONO\", \"MGLV\". See the [List of railtype labels](https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels) in the NewGRF Specs for currently defined custom labels. \n - By default there is only one roadtype \"ROAD\" defined. \n - By default there is only one tramtype \"ELRL\" defined. By convention tramtypes shall reuse railtype labels for similar types. \n",
+		"example": "railtypetable {\n\tRAIL,\n\tELRL,\n\t\"3RDR\",\n\tRT_SHINY_RAIL: [SHNY, RAIL]\n}\n"
+	},
+	"spritegroup": {
+		"title": "spritegroup",
+		"description": "Groups existing sprites"
+	},
+	"FEAT_TRAINS": {
+		"title": "FEAT_TRAINS",
+		"description": "Feature for trains"
+	},
+	"FEAT_ROADVEH": {
+		"title": "FEAT_ROADVEH",
+		"description": "Feature for road vehicles"
+	}
+}
