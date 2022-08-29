@@ -3,7 +3,7 @@
     "displayName": "NewGRF Meta Language",
     "description": "Adds the NewGRF Meta Language",
     "author": "spnda",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "publisher": "spnda",
     "license": "GPLv2",
     "repository": {
@@ -81,7 +81,8 @@
         "LICENSE"
     ],
     "activationEvents": [
-        "*"
+        "onLanguage:newgrfml",
+        "onLanguage:lng"
     ],
     "devDependencies": {
         "@types/node": "^15.12.2",
