@@ -16,3 +16,6 @@
 - Updated to NML 0.6.0
 - Added support for comments in language files
 - Better colours and highlighting in language files
+
+### 1.2.4
+- Updated to NML 0.7.4
