@@ -4,7 +4,7 @@
     "description": "Adds the NewGRF Meta Language",
     "author": "spnda",
     "version": "1.2.4",
-    "publisher": "spnda",
+    "publisher": "PNDA",
     "license": "GPLv2",
     "repository": {
         "type": "git",
@@ -73,7 +73,22 @@
                 "language": "newgrfml",
                 "path": "./snippets/newgrfml.json"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "NewGRF Meta Language",
+            "properties": {
+                "newgrfml.languageFolder": {
+                    "type": "string",
+                    "default": "lang",
+                    "description": "The relative folder where the language files are stored"
+                },
+                "newgrfml.languageId": {
+                    "type": "integer",
+                    "default": 1,
+                    "description": "The default language id to show during suggestions and hover prompts. If not found, the lowest language ID will be used."
+                }
+            }
+        }
     },
     "files": [
         "./lib/extension.js",
@@ -85,16 +100,16 @@
         "onLanguage:lng"
     ],
     "devDependencies": {
-        "@types/node": "^15.12.2",
+        "@types/node": "^15.14.9",
         "@types/vscode": "^1.57.0",
-        "@typescript-eslint/eslint-plugin": "^4.27.0",
-        "@typescript-eslint/parser": "^4.27.0",
-        "eslint-config-standard": "^16.0.3",
-        "eslint-plugin-import": "^2.23.4",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^5.1.0",
-        "eslint": "^7.28.0",
-        "typescript": "^4.3.2"
+        "@typescript-eslint/eslint-plugin": "^5.60.1",
+        "@typescript-eslint/parser": "^5.60.1",
+        "eslint": "^8.44.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^1.0.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "typescript": "^5.1.6"
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
