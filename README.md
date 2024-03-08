@@ -6,6 +6,6 @@ and on [Open VSX](https://open-vsx.org/extension/spnda/nml-language).
 
 ## Features
 
-- Syntax Highlighting for the NewGRF Meta Language and it's language files.
+- Syntax Highlighting for the NewGRF Meta Language and its language files.
 - Suggestions for all keywords and constants.
 - Snippets for NML
